@@ -14,6 +14,5 @@ urlpatterns = [
     path(route='create/',view=product_create, name='product_create'),
     path(route='<int:id>/',view=product_detail,name="product_detail"),
     path(route='<int:id>/update/',view=product_update,name="product_update"),
-    path(route='<int:id>/delete/',view=product_delete,name="product_delete"),
-    path(route='category/',view=category_list,name='category_list')
+    path(route='<int:id>/delete/',view=product_delete,name="product_delete"),    
 ]

@@ -5,8 +5,11 @@ from django.shortcuts import (
 
 from product.models import Category
 from product.repositories.product import ProductRepository
+from product.repositories.category import CategoryRepository
 
 repo = ProductRepository()
+
+category_repository = CategoryRepository()
 
 def index_view(request):
     return render(
@@ -52,7 +55,7 @@ def product_update(request, id):
         )
         return redirect("product_detail",edited_product.id)
 
-    categorias = Category.objects.all()
+    categorias = category_repository.get_all()
     return render(
         request,
         "products/update.html",
@@ -84,8 +87,7 @@ def product_create(request):
         )
         return redirect("product_detail",product.id)
     
-    # TODO reemplazar esta linea con el repositorio de categorias
-    categories = Category.objects.all()
+    categories = category_repository.get_all()
     return render(request, 'products/create.html', dict(
         categories=categories
     ))
