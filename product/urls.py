@@ -8,6 +8,9 @@ from product.views.product_view import (
     product_update,
 )
 from product.views.category_view import category_list
+from product.views.product_review_view import (
+    ProductReviewView
+)
 
 urlpatterns = [
     path(route='', view=product_list, name='product_list'),
@@ -15,4 +18,5 @@ urlpatterns = [
     path(route='<int:id>/',view=product_detail,name="product_detail"),
     path(route='<int:id>/update/',view=product_update,name="product_update"),
     path(route='<int:id>/delete/',view=product_delete,name="product_delete"),    
+    path(route='product_reviews/',view=ProductReviewView.as_view(), name="product_reviews")
 ]

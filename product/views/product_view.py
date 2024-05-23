@@ -11,12 +11,6 @@ repo = ProductRepository()
 
 category_repository = CategoryRepository()
 
-def index_view(request):
-    return render(
-        request,
-        'index/index.html'
-    )
-
 def product_list(request):
     productos = repo.get_all()
     return render(
