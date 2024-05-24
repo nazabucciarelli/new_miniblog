@@ -2,6 +2,7 @@ from django.contrib.auth import (
     authenticate,
     login)
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 
 from django.views import View
 # Create your views here.
@@ -29,7 +30,7 @@ class LoginView(View):
                 return redirect('index')
         return redirect('login')
 
-
+@login_required(login_url="/login/")
 def index_view(request):
     return render(
         request,

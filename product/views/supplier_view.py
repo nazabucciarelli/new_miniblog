@@ -4,11 +4,12 @@ from django.shortcuts import (
 )
 
 from product.models import Supplier
+from django.contrib.auth.decorators import login_required
 from product.repositories.supplier import SupplierRepository
 
 supplier_repository = SupplierRepository()
 
-
+@login_required(login_url="/login/")
 def supplier_list(request):
     suppliers = supplier_repository.get_all()
     return render(
@@ -18,7 +19,7 @@ def supplier_list(request):
             suppliers=suppliers
         ))
 
-
+@login_required(login_url="/login/")
 def supplier_detail(request, id):
     supplier = supplier_repository.get_by_id(id)
     return render(
@@ -28,13 +29,13 @@ def supplier_detail(request, id):
             supplier=supplier
         ))
 
-
+@login_required(login_url="/login/")
 def supplier_delete(request, id):
     supplier = supplier_repository.get_by_id(id)
     supplier.delete()
     return redirect('supplier_list')
 
-
+@login_required(login_url="/login/")
 def supplier_create(request):
     if request.method == "POST":
         name = request.POST.get('name')
@@ -48,7 +49,7 @@ def supplier_create(request):
         'suppliers/create.html'
     )
 
-
+@login_required(login_url="/login/")
 def supplier_update(request,id):
     supplier = supplier_repository.get_by_id(id)
     if request.method == "POST":

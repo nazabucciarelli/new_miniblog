@@ -6,20 +6,25 @@
     <form method="post">
         {% csrf_token %}
         <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" name="name" class="form-control" required>
+            <label>Producto</label>
+            <select name="id_product" class="form-control">
+                <option value="">Seleccione un producto</option>
+                {% for product in products %}
+                <option value="{{ product.id }}">{{ product.name }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" name="name" class="form-control" required>
+            <label>Opinión</label>
+            <textarea type="text" name="review" class="form-control" required></textarea>
         </div>
         <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" name="name" class="form-control" required>
+            <label>Fecha</label>
+            <input type="date" name="date" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" name="name" class="form-control" required>
+            <label>Valoración</label>
+            <input type="number" max="5" min="0" value="0" name="rating" class="form-control" required>
         </div>
         <button type="submit" class="btn btn-primary mt-2">Guardar</button>
     </form>

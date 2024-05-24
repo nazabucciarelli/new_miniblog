@@ -6,11 +6,13 @@ from django.shortcuts import (
 from product.models import Category
 from product.repositories.product import ProductRepository
 from product.repositories.category import CategoryRepository
+from django.contrib.auth.decorators import login_required
 
 repo = ProductRepository()
 
 category_repository = CategoryRepository()
 
+@login_required(login_url="/login/")
 def product_list(request):
     productos = repo.get_all()
     return render(
@@ -21,6 +23,7 @@ def product_list(request):
         )
     )
 
+@login_required(login_url="/login/")
 def product_detail(request, id):
     producto = repo.get_by_id(id=id)
     return render(
@@ -29,6 +32,7 @@ def product_detail(request, id):
         {"product":producto}
     )
 
+@login_required(login_url="/login/")
 def product_update(request, id):
     product = repo.get_by_id(id=id)
     if request.method == "POST":
@@ -59,11 +63,13 @@ def product_update(request, id):
         )
     )
 
+@login_required(login_url="/login/")
 def product_delete(request, id):
     product = repo.get_by_id(id=id)
     repo.delete(producto=product)
     return redirect("product_list")
 
+@login_required(login_url="/login/")
 def product_create(request):
     if request.method == "POST":
         name = request.POST.get('name')
