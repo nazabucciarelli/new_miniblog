@@ -11,7 +11,7 @@ class LoginView(View):
     def get(self, request):
         return render(
             request,
-            'home/login.html'
+            'index/login.html'
         )
     
     def post(self, request):
@@ -24,6 +24,7 @@ class LoginView(View):
                 password = password
             )
             if user:
+                print(user)
                 login(request,user)
                 return redirect('index')
         return redirect('login')

@@ -9,7 +9,7 @@ from product.repositories.product_review import ProductReviewRepository
 
 product_review_repository = ProductReviewRepository()
 
-class ProductReviewView(View):
+class ProductReviewListView(View):
     def get(self,request):
         product_reviews = product_review_repository.get_all()
         return render(
@@ -18,4 +18,14 @@ class ProductReviewView(View):
             dict(
                 product_reviews=product_reviews
             )
+        )
+    
+    def update(self,request):
+        ...
+
+class ProductReviewCreateView(View):
+    def get(self,request):
+        return render(
+            request,
+            'product_reviews/create.html',
         )

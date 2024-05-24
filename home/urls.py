@@ -8,4 +8,4 @@ from home.views import (
 urlpatterns = [
     path('', index_view, name="index"),
     path(route='login/',view=LoginView.as_view(),name='login')
-    ]
+]
