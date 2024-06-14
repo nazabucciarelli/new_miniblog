@@ -8,7 +8,7 @@ from product.views.product_review_view import ProductReviewListView, ProductRevi
 urlpatterns = [
     path('', include("home.urls")),
     path('admin/', admin.site.urls),
-    path('products', include("product.urls")),
+    path('products/', include("product.urls")),
     path('categories', view=category_list, name="category_list"),
     path('categories/create', view=category_create, name="category_create"),
     path('categories/delete/<int:id>',

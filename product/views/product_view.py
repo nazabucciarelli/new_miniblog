@@ -7,6 +7,7 @@ from product.models import Category
 from product.repositories.product import ProductRepository
 from product.repositories.category import CategoryRepository
 from django.contrib.auth.decorators import login_required
+from product.forms import ProductForm
 
 repo = ProductRepository()
 
@@ -71,6 +72,7 @@ def product_delete(request, id):
 
 @login_required(login_url="/login/")
 def product_create(request):
+    form = ProductForm()
     if request.method == "POST":
         name = request.POST.get('name')
         description = request.POST.get('description')
@@ -89,5 +91,6 @@ def product_create(request):
     
     categories = category_repository.get_all()
     return render(request, 'products/create.html', dict(
-        categories=categories
+        categories=categories,
+        form=form
     ))
