@@ -5,6 +5,9 @@ from product.views.category_view import category_list, category_create, category
 from product.views.supplier_view import supplier_detail, supplier_list, supplier_create, supplier_delete, supplier_update
 from product.views.product_review_view import ProductReviewListView, ProductReviewCreateView
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('', include("home.urls")),
     path('admin/', admin.site.urls),
@@ -26,4 +29,4 @@ urlpatterns = [
          name="product_reviews_list"),
     path(route='product_reviews/create/',
          view=ProductReviewCreateView.as_view(), name="product_reviews_create")
-]
+] + static(settings.MEDIA_URL, document_roots=settings.MEDIA_ROOT)
